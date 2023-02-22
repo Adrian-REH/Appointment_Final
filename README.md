@@ -30,34 +30,30 @@ This is one App of **Appointment Medical**, in that the patient can **search fav
  ### Home Activity
  *The patient and Medical can search Appointment, see History medical, navegation to the different screens*
   
-- Navegation to Home
-  
-    You Can see Appointment of the week and the of Today view is autoselect also can create new Appointment and search Medicals
+- **HOME**: You Can see Appointment of the week and the of Today view is autoselect also can create new Appointment and search Medicals
     
-- Navegation to Favorite
-  
-    Here search Medicals and add or delete of Favorite list
+- **FAVORITE**: Here search Medicals and add or delete of Favorite list
     
-- Navegation to Calendar
-  
-    Here you can selected date and search appointment list of that day
+- **CALENDAR**: Here you can selected date and search appointment list of that day
     
-- Navegation to Files
+- **FILES**: Here you can see list of Record of appointment, summarized for type of files, 
+    
+- **MENU**: You can navegation by the different Screen, exit app, view Profile and edit security
+    
 
-    Here you can see list of Record of appointment, summarized for type of files, 
-    
-- Navegation to Menu
-
-    You can navegation by the different Screen, exit app, view Profile and edit security
-    
  ### Profile Activity
-  **
-- Resume
+  *Here the Medical and Patient see Resumen and Edit the view with on Click*
+
+- **RESUME**: The resume of medical and patient they haven't much different, also is possible see view of the Card Hour and List Card Specialty
   
-- Editable Resume
-  
+- **EDITABLE_RESUME**: Is editable all information of the users, also there is CRUD for list card selected Hour and card specialty
+ 
  ### Appointment Activity
-  **
+  *you have two shapes for create appointment and See resume of each one*
+
+- **CREATE**:The patient or Medical can create appointment simple medical or for one laboratory for one patient, selecting Name medical or Lab, specialty or type of analysis, profession or direction of Labs, select Hour and Date and then Confirm. Very Simple .
+
+- **RESUME**: View of the appointment detailed and download files upload for the medical and if open view medical can upload new file of this type: Odontogram, prescription, forms, studies, etc. and the patient can see those files.
 
  ### Session Activity
   **
