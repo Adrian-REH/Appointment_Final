@@ -101,7 +101,7 @@ class DataViewModel @Inject constructor(
  
  -  __DataRepository.kt__
 ```kotlin
-interface UserRepository {
+interface DataRepository {
 
     suspend fun getData(): ArrayList<Data>
     fun getAllDate(): LiveData<List<Data>>
@@ -110,7 +110,7 @@ interface UserRepository {
     suspend fun postData(data:Data)
 }
 
-class UserRepositoryImp @Inject constructor(
+class DataRepositoryImp @Inject constructor(
     private val dataDao: DataDao,
 
 ) : UserRepository {
