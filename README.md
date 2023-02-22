@@ -3,7 +3,7 @@ This is one App of **Appointment Medical**, in that the patient can **search fav
  After create appointment the Patient can **search record medical** and **view different type of files that medical upload** in referently to the appointment, only some can be see by the patient and all will be editable for the medical.
  By different method the patient **can see personal information of the medical and for know if that his tuition is verified**.
  
-## Data of the Patient and Medical necessary for the DB:
+## Necessary data for the DB:
  > Document of identity
  >
  > Direction of the Medical
@@ -51,15 +51,19 @@ This is one App of **Appointment Medical**, in that the patient can **search fav
  ### Appointment Activity
   *you have two shapes for create appointment and See resume of each one*
 
-- **CREATE**:The patient or Medical can create appointment simple medical or for one laboratory for one patient, selecting Name medical or Lab, specialty or type of analysis, profession or direction of Labs, select Hour and Date and then Confirm. Very Simple .
+- **CREATE**:The patient or Medical can create appointment simple medical or for one laboratory for one patient, selecting **_Name_** medical or Lab, **_specialty_** or type of **_analysis_**, **_profession_** or **_direction_** of Labs, select **_Hour_** and **_Date_** and then Confirm. Very Simple .
 
-- **RESUME**: View of the appointment detailed and download files upload for the medical and if open view medical can upload new file of this type: Odontogram, prescription, forms, studies, etc. and the patient can see those files.
+- **RESUME**: View of the appointment detailed and download files upload for the medical and if open view medical can upload new file of this type: **_Odontogram_**, **_prescription_**, **_forms_**, **_studies_**, etc. and the patient can see those files.
 
  ### Session Activity
-  **
-    
+  *Can you login and check in*
   
+ - **CHECK-IN**: You can check in with email and create password, also can create different account for patient and medical, if email is checked in account patient, can create and validate Tuition in medical account. Is required **_name_** and **_last name_**, **_email_**, **_dni_** and **_password_**
+
+ - **LOGIN**: If you created medical or patient acount can login with email and password
   
+## CODE:
+
   
   
   
