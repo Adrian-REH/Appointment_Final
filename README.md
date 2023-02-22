@@ -292,7 +292,73 @@ abstract class DbDataSource : RoomDatabase() {
 
 ## SUPOSSED CODE-TEST:
 
+ ```kotlin
+ @Module
+@TestInstallIn(
+    components = [SingletonComponent::class],
+    replaces = [RepositoryModule::class]
+)
+class FakeRepositoryModule {
 
+    @Provides
+    @Singleton
+    fun appointmentRepository(): AppointmetRepository =
+        object : AppointmetRepository {
+
+            private val appointmets = MutableLiveData<List<Appointment>>(listOf());
+
+
+
+            override suspend fun deleteAppointment(toDelete: Appointment) {
+                appointmets.postValue(appointmets.value?.toMutableList()?.apply { remove(toDelete) })
+            }
+
+            override fun getAllAppointment(): LiveData<List<Appointment>> {
+
+                val listAppointment= ArrayList<Appointment>()
+                val NewAppointment = Appointment("IDa ${appointmets.value!!.size}", "FECHA", "11:00", "COMENT","IDs 1","IDp 1","IDm 1","PROFF","IDf 1","100")
+
+                listAppointment.add(NewAppointment)
+                appointmets.postValue(appointmets.value?.toMutableList()?.apply { add(NewAppointment) })
+
+                return  appointmets
+            }
+
+
+            override suspend fun getPatientAppointment(patient: String): ArrayList<Appointment> {
+                val listAppointment= ArrayList<Appointment>()
+                val NewAppointment = Appointment("IDa ${appointmets.value!!.size}", "FECHA", "11:00", "COMENT","IDs 1","IDp 1","IDm 1","PROFF","IDf 1","100")
+
+                listAppointment.add(NewAppointment)
+                appointmets.postValue(appointmets.value?.toMutableList()?.apply { add(NewAppointment) })
+
+                return listAppointment
+            }
+
+            override suspend fun getMedicalAppointment(medical:String): ArrayList<Appointment> {
+
+                val listAppointment= ArrayList<Appointment>()
+                 val NewAppointment = Appointment("IDa ${appointmets.value!!.size}", "FECHA", "11:00", "COMENT","IDs 1","IDp 1","IDm 1","PROFF","IDf 1","100")
+
+                listAppointment.add(NewAppointment)
+                appointmets.postValue(appointmets.value?.toMutableList()?.apply { add(NewAppointment) })
+
+                return listAppointment
+            }
+
+
+            override suspend fun deleteAllAppointment() {
+                appointmets.postValue(appointmets.value?.toMutableList()?.apply { removeAll(appointmets.value!!) })
+
+            }
+
+            override suspend fun postAppointment(appointment: Appointment): String {
+                appointmets.postValue(appointmets.value?.toMutableList()?.apply { remove(appointment) })
+                return ""
+            }
+        }
+ }
+ ```
 
   ## Gradle Implementation:
   - **_Jetpack Compose_**
