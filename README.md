@@ -170,25 +170,22 @@ class DataRepositoryImp @Inject constructor(
 
 }
 ```
+    
+  ## Gradle Implementation:
+  - **_Navigation Compose_**
+  - **_ROOM_** 
+  - **_Retrofit_** 
+  - **_Dogger - Hilt - testing_**
+  - **_Junit and Espresso_** 
+  - **_mockwebserver_**
+  - **_Firebase_**
+  - **_Maps_**
+  - **_Volley_**
   
   ## Necessary data for the DB:
- > Document of identity
- >
- > Direction of the Medical
- >
- > Tuition of Medical
- >
- > Phone
- >
- > Email
- >
- > Name and Last name
- >
- > Specialty his price and Offer, of medical
- >
- > Hour of activity 
- > 
- > Upload File: Odontograms, recipe, forms, result of the Laboratory, studies of medical
+  > _Document of identity, Direction of the Medical, Tuition of Medical, Phone, Email, Name and Last name, Specialty his price and Offer, of medical, Hour of activity_
+  > 
+  >  **Upload File**: _Odontograms, recipe, forms, result of the Laboratory, studies of medical_
  
  ### **_EL CODIGO COMPLETO ES PRIVADO_**
 
