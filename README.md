@@ -131,7 +131,6 @@ class DataRepositoryImp @Inject constructor(
             listDatas.add(data)
             dataDao.insert(data)
         }
-        Log.d("getData","${listDates.size}")
         return listDatas
     }
     
@@ -142,10 +141,8 @@ class DataRepositoryImp @Inject constructor(
         val call = dataSource.putData(data.file)
         call.enqueue(object : Callback<UpdateResponse> {
             override fun onFailure(call: Call<UpdateResponse>, t: Throwable) {
-                Log.d("putDate -> ERROR",  t.message.toString())
             }
             override fun onResponse(call: Call<UpdateResponse>, response: retrofit2.Response<UpdateResponse>) {
-                Log.d("putDate -> SUCCESSFULLY", response.body()?.acknowledged.toString())
             }
         })
         dataDao.insert(data)
@@ -161,7 +158,6 @@ class DataRepositoryImp @Inject constructor(
             override fun onFailure(call: Call<DateResponse>, t: Throwable) {
             }
             override fun onResponse(call: Call<DateResponse>, response: retrofit2.Response<DateResponse>) {
-                Log.d("postMedical","Successful")
 
             }
         })
