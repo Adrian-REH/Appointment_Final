@@ -166,6 +166,129 @@ class DataRepositoryImp @Inject constructor(
 
 }
 ```
+ - Model directory  __Data.kt__
+
+```kotlin
+@Entity(tableName = "datas", indices = [Index(value = ["_id"], unique = true)])
+data class Data(
+    @ColumnInfo(name = "_id") val _id: String,
+    @ColumnInfo(name = "file") val file: String,
+    @PrimaryKey(autoGenerate = true) var id: Int = 0
+)
+
+@Dao
+interface DateDao {
+
+    @Query("SELECT * FROM datas ORDER BY id DESC")
+    fun getAllData(): LiveData<List<Data>>
+    @Delete
+    fun delete(data: Data)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insert(data: Data)
+}
+```
+
+
+- di directory
+```kotlin
+@Module
+@InstallIn(SingletonComponent::class)
+abstract class RepositoryModule {
+
+    @Binds
+    @Singleton
+    abstract fun dataRepository(repo: DataRepositoryImp): DataRepository
+}
+```
+
+```kotlin
+
+@Module
+@InstallIn(SingletonComponent::class)
+class DataSourceModule {
+
+    @Singleton
+    @Provides
+    @Named("BaseUrl")
+    fun provideBaseUrl() = "https://data.net/api/"
+
+    @Singleton
+    @Provides
+    fun provideRetrofit(@Named("BaseUrl") baseUrl: String): Retrofit {
+        return Retrofit.Builder()
+            .addConverterFactory(GsonConverterFactory.create())
+            .client(cliente())
+            .baseUrl(baseUrl)
+            .build()
+    }
+
+    @Singleton
+    @Provides
+    fun cliente(): OkHttpClient =
+        OkHttpClient.Builder()
+            .connectTimeout(100,TimeUnit.SECONDS)
+            .readTimeout(100,TimeUnit.SECONDS)
+            .build()
+
+    @Singleton
+    @Provides
+    fun restDataSource(retrofit: Retrofit): RestDataSource =
+        retrofit.create(RestDataSource::class.java)
+
+    @Singleton
+    @Provides
+    fun dbDataSource(@ApplicationContext context: Context): DbDataSource {
+        return Room.databaseBuilder(context, DbDataSource::class.java, "data_database")
+            .fallbackToDestructiveMigration()
+            .build()
+    }
+    @Singleton
+    @Provides
+    fun dateDao(db: DbDataSource): DateDao = db.dateDao()
+
+}
+
+```
+
+- DataSource directory
+```kotlin
+interface RestDataSource {
+
+    @GET("data")
+    suspend fun  getDate(): ApiDate
+
+    @DELETE("data/{id}")
+    suspend fun  deleteData(@Path("id") id:String): Response<DeleteResponse>
+
+    @FormUrlEncoded
+    @PUT("data/{id}")
+    fun putDate(
+        @Path("id") id:String,
+        @Field("file") file:String
+    ): Call<UpdateResponse>
+
+    @FormUrlEncoded
+    @POST("data")
+    fun postData(
+        @Field("file") file:String
+    ): Call<DataResponse>
+    ...
+```
+```kotlin
+@Database(entities = [ Data::class], version =1)
+abstract class DbDataSource : RoomDatabase() {
+
+    abstract fun dataDao(): DataDao
+}
+```
+
+
+
+
+
+
+
+
 ## SUPOSSED CODE-TEST:
 
 
