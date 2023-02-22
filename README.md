@@ -113,7 +113,7 @@ interface DataRepository {
 class DataRepositoryImp @Inject constructor(
     private val dataDao: DataDao,
 
-) : UserRepository {
+) : DataRepository {
 
     override suspend fun deleteData(toDelete:Data) {
         val call=dataSource.deleteData(toDelete._id)
