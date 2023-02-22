@@ -295,7 +295,7 @@ abstract class DbDataSource : RoomDatabase() {
 
 
   ## Gradle Implementation:
-  - **_Navigation Compose_**
+  - **_Jetpack Compose_**
   - **_ROOM_** 
   - **_Retrofit_** 
   - **_Dogger - Hilt - testing_**
