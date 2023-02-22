@@ -3,24 +3,6 @@ This is one App of **Appointment Medical**, in that the patient can **search fav
  After create appointment the Patient can **search record medical** and **view different type of files that medical upload** in referently to the appointment, only some can be see by the patient and all will be editable for the medical.
  By different method the patient **can see personal information of the medical and for know if that his tuition is verified**.
  
-## Necessary data for the DB:
- > Document of identity
- >
- > Direction of the Medical
- >
- > Tuition of Medical
- >
- > Phone
- >
- > Email
- >
- > Name and Last name
- >
- > Specialty his price and Offer, of medical
- >
- > Hour of activity 
- > 
- > Upload File: Odontograms, recipe, forms, result of the Laboratory, studies of medical
  
  ## Activity and functions:
  
@@ -62,12 +44,152 @@ This is one App of **Appointment Medical**, in that the patient can **search fav
 
  - **LOGIN**: If you created medical or patient acount can login with email and password
   
-## CODE:
+## SUPOSSED CODE:
 
+-  function in file ViewModel __DataViewModel.kt__
+```kotlin
+
+@HiltViewModel
+class DataViewModel @Inject constructor(
+    private val dataRepo: DataRepository
+) : ViewModel() {
+
+    private val _isLoading: MutableLiveData<Boolean> by lazy {
+        MutableLiveData<Boolean>(false)
+    }
+    val isLoading: LiveData<Boolean> get() = _isLoading
+    
+    val data: LiveData<List<Data>> by lazy {
+        userRepo.getAllData()
+    }
+    fun deleteData(toDelete: Data) {
+        if (_isLoading.value == false)
+            viewModelScope.launch(Dispatchers.IO) {
+                _isLoading.postValue(true)
+                dataRepo.deleteData(toDelete)
+                _isLoading.postValue(false)
+            }
+    }
+    fun loadData() {
+        if (_isLoading.value == false)
+            viewModelScope.launch(Dispatchers.IO) {
+                _isLoading.postValue(true)
+                dataRepo.getDate()
+                _isLoading.postValue(false)
+            }
+    }
+    fun uploadData(data: Data) {
+        if (_isLoading.value == false)
+            viewModelScope.launch(Dispatchers.IO) {
+                _isLoadingUp.postValue(true)
+                dataRepo.putData(data)
+                _isLoadingUp.postValue(false)
+
+            }
+    }
+    fun addData(data: Data) {
+        if (_isLoading.value == false)
+            viewModelScope.launch(Dispatchers.IO) {
+                _isLoading.postValue(true)
+                dataRepo.postData(data)
+                _isLoading.postValue(false)
+            }
+    }
+...
+
+```
+ 
+ -  __DataRepository.kt__
+```kotlin
+interface UserRepository {
+
+    suspend fun getData(): ArrayList<Data>
+    fun getAllDate(): LiveData<List<Data>>
+    suspend fun deleteData(toDelete: Data)
+    suspend fun putData(data: Data)
+    suspend fun postData(data:Data)
+}
+
+class UserRepositoryImp @Inject constructor(
+    private val dataDao: DataDao,
+
+) : UserRepository {
+
+    override suspend fun deleteData(toDelete:Data) {
+        val call=dataSource.deleteData(toDelete._id)
+        dataDao.delete(toDelete)
+    }
+    
+    override suspend fun getData(): ArrayList<Data> {
+        delay(3000)
+        val listDatas= ArrayList<Data>()
+        for (i in 0 until dataSource.getData().result.size) {
+            val _id =dataSource.getData().result[i]._id
+            val file =dataSource.getData().result[i].file
+
+            val  data= Data(_id,file,)
+            listDatas.add(data)
+            dataDao.insert(data)
+        }
+        Log.d("getData","${listDates.size}")
+        return listDatas
+    }
+    
+    override fun getAllData() = dataDao.getAllData()
+    override suspend fun putData(data:  Data) {
+        delay(3000)
+
+        val call = dataSource.putData(data.file)
+        call.enqueue(object : Callback<UpdateResponse> {
+            override fun onFailure(call: Call<UpdateResponse>, t: Throwable) {
+                Log.d("putDate -> ERROR",  t.message.toString())
+            }
+            override fun onResponse(call: Call<UpdateResponse>, response: retrofit2.Response<UpdateResponse>) {
+                Log.d("putDate -> SUCCESSFULLY", response.body()?.acknowledged.toString())
+            }
+        })
+        dataDao.insert(data)
+        return ID
+    }
+    
+    override suspend fun postData(data:Data) {
+        delay(3000)
+        //DESCARGO LOS DATOS
+        var  ID= ""
+        val call = dataSource.postData(data.file)
+        call.enqueue(object : Callback<DateResponse> {
+            override fun onFailure(call: Call<DateResponse>, t: Throwable) {
+            }
+            override fun onResponse(call: Call<DateResponse>, response: retrofit2.Response<DateResponse>) {
+                Log.d("postMedical","Successful")
+
+            }
+        })
+    }
+
+
+}
+```
   
-  
-  
-  
+  ## Necessary data for the DB:
+ > Document of identity
+ >
+ > Direction of the Medical
+ >
+ > Tuition of Medical
+ >
+ > Phone
+ >
+ > Email
+ >
+ > Name and Last name
+ >
+ > Specialty his price and Offer, of medical
+ >
+ > Hour of activity 
+ > 
+ > Upload File: Odontograms, recipe, forms, result of the Laboratory, studies of medical
+
   
   
   
