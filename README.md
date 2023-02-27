@@ -359,6 +359,49 @@ class FakeRepositoryModule {
         }
  }
  ```
+ 
+  ```kotlin
+  
+@HiltAndroidTest
+@RunWith(AndroidJUnit4::class)
+class AppointmentInstrumentedTest {
+
+    @get:Rule(order  =1)
+    var hiltTestRule=HiltAndroidRule(this)
+
+    @get:Rule(order  =2)
+    var composeTestRule= createAndroidComposeRule<AppointmentActivity>()
+    lateinit var navController: TestNavHostController
+
+
+
+    @Test
+    fun AppointmentNavHost_Medical_AddNewItem(){
+        composeTestRule.setContent {
+            navController = TestNavHostController(LocalContext.current)
+            navController.navigatorProvider.addNavigator(ComposeNavigator())
+            AppointmentNavHost(true,"IDm 0","appointmentID","HomeSelect/?newText=",navController,onDownload={
+
+            })
+        }
+
+        composeTestRule.onNodeWithText("MEDICAL").performClick()
+        composeTestRule.onNodeWithContentDescription("MedicalList").performClick()
+        composeTestRule.onNodeWithText("Name 0 Last 0").performClick()
+        composeTestRule.onNodeWithContentDescription("ProfessionList").performClick()
+        composeTestRule.onNodeWithText("PROFF").performClick()
+        composeTestRule.onNodeWithContentDescription("SpecialtyList").performClick()
+        composeTestRule.onNodeWithText("TITLE").performClick()
+        composeTestRule.onNodeWithContentDescription("PatientList").performClick()
+        composeTestRule.onNodeWithText("NAME 0 LAST 0").performClick()
+        composeTestRule.onNodeWithContentDescription("CalendarSee").performClick()
+        composeTestRule.onNodeWithText("Search").performClick()
+        composeTestRule.onNodeWithText("10:00").performClick()
+        composeTestRule.onNodeWithText("CONFIRMAR").performClick()
+
+    }
+    ...
+  ```
 
   ## Gradle Implementation:
   - **_Jetpack Compose_**
