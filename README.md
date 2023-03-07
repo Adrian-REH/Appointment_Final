@@ -3,7 +3,7 @@ This is one App of **Appointment Medical**, in that the patient can **search fav
  After create appointment the Patient can **search record medical** and **view different type of files that medical upload** in referently to the appointment, only some can be see by the patient and all will be editable for the medical.
  By different method the patient **can see personal information of the medical and for know if that his tuition is verified**.
  
- 
+
  ## Activity and functions:
  
  *I'm create four activitys with function specify*
@@ -421,7 +421,14 @@ class AppointmentInstrumentedTest {
  
  ### **_EL CODIGO COMPLETO ES PRIVADO_**
 
-  
+   ## Descarga
+[![Google Play](https://img.shields.io/badge/Google_Play-414141?style=for-the-badge&logo=googleplay&logoColor=white&labelColor=414141)]() Proximamente
+
+[![Kotlin](https://img.shields.io/badge/Kotlin-7F52FF?style=flat-square&logo=kotlin&logoColor=white&labelColor=7F52FF)]()
+[![Android_Studio](https://img.shields.io/badge/Android_Studio-3DDC84?style=flat-square&logo=android-studio&logoColor=black&labelColor=3DDC84)]()
+[![Node.js](https://img.shields.io/badge/Node.js-F7DF1E?style=flat-square&logo=node&logoColor=black&labelColor=F7DF1E)]()
+[![MongoDB](https://img.shields.io/badge/MongoDB-3DDC84?style=flat-square&logo=mongodb&logoColor=black&labelColor=3DDC84)]()
+</br>
   
   
   
