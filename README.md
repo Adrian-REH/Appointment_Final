@@ -421,8 +421,8 @@ class AppointmentInstrumentedTest {
  
  ### **_EL CODIGO COMPLETO ES PRIVADO_**
 
-   ## Descarga
-[![Google Play](https://play.google.com/store/apps/details?id=app.ibiocd.appointment)]() 
+ ## Descarga
+[![Google Play](https://img.shields.io/badge/Google_Play-414141?style=for-the-badge&logo=googleplay&logoColor=white&labelColor=414141)](https://play.google.com/store/apps/details?id=app.ibiocd.appointment) 
 
 [![Kotlin](https://img.shields.io/badge/Kotlin-7F52FF?style=flat-square&logo=kotlin&logoColor=white&labelColor=7F52FF)]()
 [![Android_Studio](https://img.shields.io/badge/Android_Studio-3DDC84?style=flat-square&logo=android-studio&logoColor=black&labelColor=3DDC84)]()
