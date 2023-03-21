@@ -1,4 +1,4 @@
-# Appointment_Final
+# Appointment(a bit of everything)
 
 This is one App of **Appointment Medical**, in that the patient can **search favorite Medicals** in GoogleMaps whithin app and **Add this Medical to list of favorite** for after **create appointments** selecting specialty and profession of the medical and, date and hour of appointment.
  After create appointment the Patient can **search record medical** and **view different type of files that medical upload** in referently to the appointment, only some can be see by the patient and all will be editable for the medical.
